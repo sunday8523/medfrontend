@@ -20,7 +20,7 @@ const DashboardStats = () => {
   const [hoverIndexBottom, setHoverIndexBottom] = useState(null);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/logs/stats`)
+    axios.get(`${process.env.VITE_API_URL}/api/logs/stats`)
       .then(res => {
         setTopMeds(res.data.topMeds);
         setBottomMeds(res.data.bottomMeds);

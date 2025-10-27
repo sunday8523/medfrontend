@@ -22,7 +22,7 @@ const UserSettingsModal = ({ isOpen, onClose }) => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/me`, { headers: { Authorization: `Bearer ${token}` } });
+        const res = await axios.get(`${process.env.VITE_API_URL}/api/users/me`, { headers: { Authorization: `Bearer ${token}` } });
         setUserData(res.data);
         setFormData({ username: res.data.username, email: res.data.email, name: res.data.name, password: "" });
       } catch (err) {
@@ -74,7 +74,7 @@ const UserSettingsModal = ({ isOpen, onClose }) => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/users/update`, payload, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.put(`${process.env.VITE_API_URL}/api/users/update`, payload, { headers: { Authorization: `Bearer ${token}` } });
       setUserData(prev => ({ ...prev, ...payload }));
       setFormData(prev => ({ ...prev, password: "" }));
 

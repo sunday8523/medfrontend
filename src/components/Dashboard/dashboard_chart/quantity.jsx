@@ -14,7 +14,7 @@ export default function Quantity() {
     const fetchMedStats = async () => {
       try {
         // เรียก backend จาก quantityRoutes.js
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/quantity/med-stats`);
+        const res = await axios.get(`${process.env.VITE_API_URL}/api/quantity/med-stats`);
         setMedStats(res.data);
       } catch (err) {
         console.error('Error fetching med stats:', err);

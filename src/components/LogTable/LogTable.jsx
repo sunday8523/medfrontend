@@ -33,7 +33,7 @@ function LogTable() {
     const fetchLogs = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/logs`, {
+        const response = await axios.get(`${process.env.VITE_API_URL}/api/logs`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setLogs(response.data);
@@ -58,7 +58,7 @@ function LogTable() {
     if (!selectedLog) return;
 
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/logs/${selectedLog.log_id}`, {
+      await axios.delete(`${process.env.VITE_API_URL}/api/logs/${selectedLog.log_id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       

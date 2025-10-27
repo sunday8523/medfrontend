@@ -47,7 +47,7 @@ export default function RegisterModal({ closeModal }) {
 
     try {
       const payload = { ...formData, role: "member" };
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, payload);
+      const response = await axios.post(`${process.env.VITE_API_URL}/auth/register`, payload);
       toast.success(response.data.message || "สมัครสมาชิกสำเร็จ 🎉");
       closeModal();
     } catch (error) {

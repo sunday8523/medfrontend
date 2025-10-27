@@ -11,7 +11,7 @@ const TypeAddForm = ({ closePopup }) => {
     if (!typeName.trim()) return toast.error("กรุณากรอกชื่อประเภทยา");
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/types`, { type: typeName });
+      await axios.post(`${process.env.VITE_API_URL}/api/types`, { type: typeName });
       toast.success("เพิ่มประเภทเรียบร้อย 🎉");
       closePopup();
       setTypeName("");

@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserContext.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConfirmModal from "../ConfirmModal/ConfirmModal.jsx";
-import "./UsersTable.css.css";
+import "./UsersTable.css";
 
 function UsersTable() {
   const [users, setUsers] = useState([]);
@@ -23,7 +23,7 @@ function UsersTable() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`, {
+      const res = await axios.get(`${process.env.VITE_API_URL}/api/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(res.data);
@@ -40,7 +40,7 @@ function UsersTable() {
   const handleDeleteClick = (id) => setModal({ show: true, type: "delete", userId: id });
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/users/${modal.userId}`, {
+      await axios.delete(`${process.env.VITE_API_URL}/api/users/${modal.userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("ลบผู้ใช้เรียบร้อยแล้ว");
@@ -62,7 +62,7 @@ function UsersTable() {
   const handleConfirmEdit = async () => {
     try {
       await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/users/${modal.userId}`,
+        `${process.env.VITE_API_URL}/api/users/${modal.userId}`,
         editData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

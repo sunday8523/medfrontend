@@ -31,7 +31,7 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, values);
+            const response = await axios.post(`${process.env.VITE_API_URL}/auth/login`, values);
 
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);

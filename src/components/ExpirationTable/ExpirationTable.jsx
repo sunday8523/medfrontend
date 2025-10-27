@@ -23,10 +23,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 // 🔹 API Endpoints
-const API_URL = `${process.env.REACT_APP_API_URL}/api/meds/expiration`;
-const NOTIFY_URL = `${process.env.REACT_APP_API_URL}/api/meds/notify`;
-const LOW_STOCK_API_URL = `${process.env.REACT_APP_API_URL}/api/meds/low-stock`;
-const LOW_STOCK_NOTIFY_URL = `${process.env.REACT_APP_API_URL}/api/meds/notify-low-stock`;
+const API_URL = `${process.env.VITE_API_URL}/api/meds/expiration`;
+const NOTIFY_URL = `${process.env.VITE_API_URL}/api/meds/notify`;
+const LOW_STOCK_API_URL = `${process.env.VITE_API_URL}/api/meds/low-stock`;
+const LOW_STOCK_NOTIFY_URL = `${process.env.VITE_API_URL}/api/meds/notify-low-stock`;
 
 const ExpirationTable = () => {
   const [meds, setMeds] = useState([]);

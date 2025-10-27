@@ -11,7 +11,7 @@ import { UserContext } from '../../context/UserContext';
 import { FaUserCircle, FaCog } from "react-icons/fa";
 import UserSettingsModal from '../../components/UserSettingsModal/UserSettingsModal';
 
-import './home.css';
+import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();

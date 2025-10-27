@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserContext.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConfirmModal from "../ConfirmModal/ConfirmModal.jsx";
-import "./userstable.css";
+import "./UsersTable.css.css";
 
 function UsersTable() {
   const [users, setUsers] = useState([]);

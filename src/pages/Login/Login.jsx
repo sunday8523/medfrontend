@@ -9,11 +9,9 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-    // เพิ่ม useEffect เพื่อเช็ค token เมื่อ Component โหลด
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            // ถ้ามี token อยู่แล้ว ให้พาไปหน้าหลักเลย
             navigate('/home'); 
         }
     }, [navigate]);
@@ -23,25 +21,54 @@ const Login = () => {
     };
 
     const handleSubmit = async (e) => {
+        // --- LOG 01 ---
+        console.log("--- handleSubmit_01: ฟังก์ชันเริ่มทำงาน ---"); 
         e.preventDefault();
 
         if (!values.email || !values.password) {
+            // --- LOG 02 ---
+            console.log("--- handleSubmit_02: ล้มเหลว (ช่องว่าง) ---");
             setErrorMessage('กรุณากรอกอีเมลและรหัสผ่าน');
             return;
         }
 
+        // --- LOG 03 ---
+        console.log("--- handleSubmit_03: ข้อมูลครบถ้วน ---");
+
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, values);
+            const apiUrl = import.meta.env.VITE_API_URL;
+            
+            // --- LOG 04 ---
+            console.log("--- handleSubmit_04: กำลังเรียก API ไปที่:", `${apiUrl}/auth/login`);
+
+            const response = await axios.post(`${apiUrl}/auth/login`, values);
+
+            // --- LOG 05 ---
+            console.log("--- handleSubmit_05: เรียก API สำเร็จ", response.data);
 
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
-                // ไม่ต้องใช้ jwt_decode ตรงนี้เพราะแค่เก็บค่าไว้เฉยๆ
                 navigate('/home');
             } else {
                 setErrorMessage('เข้าสู่ระบบไม่สำเร็จ กรุณาลองใหม่');
             }
         } catch (err) {
-            // ปรับปรุงการแสดงผล error ให้ชัดเจนและไม่แสดง object error ทั้งก้อน
+            // --- LOG 06 ---
+            console.log("--- handleSubmit_06: ล้มเหลว (เข้า CATCH) ---");
+            
+            // Log error แบบละเอียด
+            if (err.response) {
+                // เซิร์ฟเวอร์ตอบกลับมา (เช่น 404, 401, 500)
+                console.error("Error Response (ข้อมูลจาก Server):", err.response.data);
+                console.error("Error Status (โค้ดที่ Server ตอบ):", err.response.status);
+            } else if (err.request) {
+                // Request ถูกส่งไป แต่ไม่ได้รับการตอบกลับ (เช่น Render หลับ, CORS)
+                console.error("Error Request (ส่งไปแล้วแต่ไม่ตอบกลับ):", err.request);
+            } else {
+                // Error อื่นๆ (เช่น ตั้งค่า axios ผิด)
+                console.error("Error Message (ปัญหาตอนตั้งค่า):", err.message);
+            }
+            
             const message = err.response?.data?.message || 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่ภายหลัง';
             setErrorMessage(message);
         }
@@ -89,3 +116,4 @@ const Login = () => {
 };
 
 export default Login;
+

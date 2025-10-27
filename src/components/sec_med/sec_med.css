@@ -1,0 +1,43 @@
+
+
+.table-wrapper {
+  /* ทำให้ตารางขยายเต็มพื้นที่ที่เหลืออยู่ */
+  flex: 1; 
+  /* ควบคุมความกว้างไม่ให้เกินขอบเขตของ Sidebar โดย 250px คือค่าตัวอย่างของความกว้าง Sidebar */
+  max-width: calc(100vw - 250px);
+  /* กำหนดความกว้างขั้นต่ำเพื่อไม่ให้ตารางหดเล็กเกินไป */
+  min-width: 600px;
+}
+
+/* คุณสามารถคงส่วนของฟอร์มไว้ได้หากมันยังคงอยู่ในหน้าเดียวกัน */
+/*
+.form-wrapper {
+  flex: 1;
+  min-width: 300px;
+}
+*/
+
+/* sec_med_table.css - ส่วนของปุ่มยังคงอยู่เหมือนเดิม */
+.action-buttons {
+  white-space: nowrap;
+}
+
+.withdraw-btn {
+  background-color: #9370DB;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.withdraw-btn:hover {
+  background-color: #7B68EE;
+}
+
+.withdraw-btn:active {
+  transform: scale(0.98);
+}

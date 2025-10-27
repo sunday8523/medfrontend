@@ -1,0 +1,168 @@
+/* ===========================
+   Modal styles (userSettingsModal.css)
+   =========================== */
+
+/* Backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+/* Modal box */
+.modal-wrapper {
+  width: 100%;
+  max-width: 640px;
+  background: linear-gradient(180deg, #ffffff, #fbfbff);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(2,6,23,0.35);
+  overflow: hidden;
+  border: 1px solid rgba(43,110,246,0.06);
+}
+
+/* Header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+  background: linear-gradient(90deg, rgba(43,110,246,0.06), rgba(99,102,241,0.03));
+}
+
+.modal-header h3 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #0b1f3a;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: #334155;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+.modal-close-btn:hover {
+  background: rgba(15,23,42,0.03);
+}
+
+/* Body */
+.modal-body {
+  padding: 18px 22px 24px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Form */
+.settings-form {
+  display: grid;
+  gap: 12px;
+}
+
+/* Field */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #334155;
+  font-weight: 600;
+}
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #fff;
+  outline: none;
+  transition: box-shadow 0.12s ease, border 0.12s ease;
+}
+.field input:focus {
+  box-shadow: 0 6px 20px rgba(43,110,246,0.08);
+  border-color: rgba(43,110,246,0.6);
+}
+
+.field-hint {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.field-error {
+  font-size: 0.82rem;
+  color: #b91c1c;
+  margin-top: 4px;
+}
+
+/* error block */
+.error-block {
+  background: #fff5f5;
+  color: #7f1d1d;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(185, 28, 28, 0.08);
+  margin-bottom: 8px;
+}
+
+/* loading */
+.loading-block {
+  padding: 18px;
+  text-align: center;
+  color: #374151;
+}
+
+/* Actions */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+.btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.btn-ghost {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid rgba(15,23,42,0.06);
+}
+.btn-primary {
+  background: linear-gradient(90deg,#2b6ef6,#6b8cff);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(43,110,246,0.14);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .modal-wrapper {
+    max-width: 92%;
+  }
+  .user-name { display: none; } /* ซ่อนชื่อบนมือถือ ถ้าต้องการ */
+}

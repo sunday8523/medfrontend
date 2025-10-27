@@ -1,0 +1,182 @@
+/* Overlay */
+.withdraw-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 15px;
+}
+
+/* Content wrapper */
+.withdraw-content-wrapper {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  width: 450px;
+  max-width: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+
+/* Header */
+.modal-header {
+  margin-bottom: 25px;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #4B0082;
+  font-weight: 600;
+}
+
+/* Notifications */
+.notification-message {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.notification-message.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.notification-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Form */
+.withdraw-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Field group */
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* Input / Textarea */
+.withdraw-field {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 10px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.withdraw-field:focus {
+  border-color: #9370DB;
+  box-shadow: 0 0 8px rgba(147,112,219,0.3);
+}
+
+/* Textarea specific */
+textarea.withdraw-field {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.withdraw-btn {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #9370DB, #7B68EE);
+  transition: all 0.3s ease;
+}
+
+.withdraw-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(147,112,219,0.4);
+}
+
+.withdraw-btn.cancel {
+  background: linear-gradient(135deg, #ccc, #aaa);
+  color: #333;
+}
+
+.withdraw-btn.cancel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .withdraw-content-wrapper {
+    padding: 20px;
+  }
+
+  .modal-header {
+    font-size: 1.4rem;
+  }
+
+  .withdraw-btn {
+    font-size: 0.9rem;
+  }
+}
+
+
+.required-star {
+  color: red;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+.notification-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0.95;
+  z-index: 9999;
+  animation: fadeOut 4s forwards;
+}
+
+.notification-toast.success {
+  background-color: #4caf50;
+}
+
+.notification-toast.error {
+  background-color: #f44336;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0.95; transform: translateY(0); }
+  80% { opacity: 0.95; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+

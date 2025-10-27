@@ -1,0 +1,151 @@
+/* Overlay background */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal container */
+.modal-container {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transform: scale(0.8);
+  animation: popIn 0.3s forwards;
+  position: relative;
+}
+
+/* Title */
+.modal-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #6b46c1;
+  font-weight: bold;
+}
+
+/* Form inputs */
+.modal-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.modal-form input:focus {
+  outline: none;
+  border-color: #6b46c1;
+  box-shadow: 0 0 5px rgba(107,70,193,0.3);
+}
+
+/* Buttons */
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  background-color: #6b46c1;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #805ad5;
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background-color: #a0aec0; /* สีเทาเมื่อปุ่มถูกปิดการใช้งาน */
+  cursor: not-allowed;
+  transform: none;
+}
+
+.close-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  background-color: #e53e3e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #c53030;
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* --- PASSWORD CRITERIA STYLES --- */
+
+.password-criteria-list {
+  margin-top: -5px; /* ดึงขึ้นเล็กน้อยให้ใกล้กับ input */
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #f7fafc;
+  text-align: left;
+}
+
+.password-criteria-list p {
+  margin-bottom: 8px;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.password-criteria-list ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+
+.password-criteria-list li {
+  font-size: 0.85em;
+  padding: 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #a0aec0; /* สีเริ่มต้น: ยังไม่ผ่าน (สีเทาอ่อน) */
+  transition: color 0.3s ease;
+}
+
+.criteria-met {
+  color: #38a169 !important; /* สีเขียว: ผ่านเงื่อนไข */
+  font-weight: 500;
+}
+
+.criteria-not-met {
+  color: #e53e3e; /* สีแดง: ยังไม่ผ่านเงื่อนไข */
+  font-weight: 400;
+}

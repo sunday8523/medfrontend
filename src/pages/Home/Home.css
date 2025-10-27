@@ -1,0 +1,108 @@
+/* --- (เดิม) Flex container --- */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.main-content {
+  flex-grow: 1;
+  background: #ebe9e9;
+  padding: 1rem;
+  margin-left: 80px; /* ขนาด sidebar collapsed */
+  transition: margin-left 0.4s ease;
+}
+
+/* เมื่อ hover sidebar */
+.sidebar:hover ~ .main-content {
+  margin-left: 220px;
+}
+
+/* Card container */
+.card--container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  min-height: 80vh;
+}
+
+/* Header wrapper */
+.header--wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* User Info */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.user-info:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* User Icon */
+.user-icon {
+  font-size: 1.9rem;
+  color: #2b6ef6;
+}
+
+/* User Name */
+.user-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(43,110,246,0.12);
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 150px;
+  transform-origin: top right;
+}
+
+.dropdown-menu button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111827;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-menu button:hover {
+  background: #f0f4ff;
+  color: #1e40af;
+}
+
+.dropdown-icon {
+  font-size: 1.05rem;
+}
+

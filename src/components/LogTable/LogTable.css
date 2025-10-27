@@ -1,0 +1,167 @@
+:root {
+  --primary-color: #7B5FFF; /* สีม่วงสด */
+  --secondary-color: #EDE7FF; /* สีม่วงอ่อน background */
+  --bg-color: #F9F9FB; /* พื้นหลังหลัก */
+  --text-color: #333;
+  --text-color-light: #666;
+  --row-hover-gradient: linear-gradient(90deg, #f3f3f3 0%, #e6e0ff 100%);
+  --button-bg: #FF5F5F;
+  --button-hover-bg: #FF3B3B;
+  --header-shadow: rgba(0,0,0,0.1);
+}
+
+/* Container */
+.log-table-container {
+  width: 100%;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.log-table-container h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+/* Responsive wrapper */
+.table-responsive {
+  overflow-x: auto;
+  max-height: 500px; /* กำหนดสูงสุด */
+  position: relative;
+  border-radius: 12px;
+}
+
+/* Custom scrollbar for modern look */
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* Table */
+.log-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.log-table thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--secondary-color);
+  z-index: 2;
+  box-shadow: 0 4px 6px var(--header-shadow);
+}
+
+.log-table th {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* Table rows & cells */
+.log-table td {
+  padding: 0.9rem 1.2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.log-table tbody tr:hover td {
+  background: var(--row-hover-gradient);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Delete button */
+.delete-button {
+  background-color: var(--button-bg);
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: var(--button-hover-bg);
+  transform: scale(1.1) rotate(-2deg);
+}
+
+/* Status messages */
+.loading-message,
+.error-message,
+.no-data-message {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .log-table-container {
+    padding: 1rem;
+  }
+
+  .log-table th,
+  .log-table td {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+/* --- ADDED: Pagination Controls CSS --- */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* ระยะห่างระหว่างปุ่ม */
+  margin-top: 1.5rem; /* ระยะห่างจากตาราง */
+}
+
+.pagination-controls button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.pagination-controls button:disabled {
+  background-color: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+  border-color: #e9ecef;
+}
+
+.pagination-controls span {
+  font-size: 0.9rem;
+  color: #555;
+  min-width: 80px; /* กำหนดความกว้างขั้นต่ำให้ text ไม่กระโดด */
+  text-align: center;
+}
+/* --- END ADDED --- */

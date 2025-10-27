@@ -1,0 +1,30 @@
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  min-width: 220px;
+  max-width: 350px;
+  background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 16px;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  animation: slideIn 0.4s ease, fadeOut 0.5s ease forwards;
+  z-index: 9999;
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #f87171, #b91c1c);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}

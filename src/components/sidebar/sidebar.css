@@ -1,0 +1,95 @@
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 80px;
+  padding: 1rem 0.5rem;
+  background: linear-gradient(180deg, #6c5ce7, #a29bfe);
+  color: #fff;
+  overflow: hidden;
+  transition: width 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.sidebar:hover {
+  width: 220px;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+}
+
+/* Menu */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu li i {
+  font-size: 1.4rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Active & hover */
+.menu li.active,
+.menu li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+}
+
+/* Sidebar Text */
+.sidebar-text {
+  display: none;
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.sidebar:hover .sidebar-text {
+  display: inline;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Logout menu ด้านล่าง */
+.logout-menu {
+  margin-top: auto;
+  padding-bottom: 1rem;
+}
+
+.logout {
+  padding: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+  .sidebar:hover {
+    width: 180px;
+  }
+  .sidebar-text {
+    font-size: 0.9rem;
+  }
+}

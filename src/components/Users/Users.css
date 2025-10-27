@@ -1,0 +1,100 @@
+/* Container หลักของหน้า User */
+.user-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f0f2f5;
+}
+
+/* Container สำหรับปุ่มด้านบน */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+/* ปุ่ม toggle (โค้ดเดิม) */
+.toggle-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.add-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.back-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.back-button:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+/* Layout ของเนื้อหา */
+.content-layout {
+    display: flex;
+    flex-direction: row; 
+    flex-grow: 1; 
+    transition: all 0.5s ease;
+}
+
+/* Layout แบบเต็มจอ */
+.content-layout.full-view {
+    flex-direction: row;
+}
+
+/* Layout แบบแบ่งครึ่ง */
+.content-layout.split-view {
+    flex-direction: row;
+}
+
+/* ส่วนของตารางผู้ใช้ */
+.users-table-section {
+    flex-grow: 1; 
+    overflow: auto;
+    transition: all 0.5s ease;
+    padding: 10px;
+}
+
+/* ส่วนของตารางผู้ใช้เมื่อถูกแบ่งครึ่ง */
+.content-layout.split-view .users-table-section {
+    /* กำหนดสัดส่วนให้ตารางใช้พื้นที่ 60% ของความกว้างทั้งหมด */
+    flex: 5; 
+    height: auto;
+}
+
+/* ส่วนของฟอร์มลงทะเบียน */
+.register-section {
+    flex: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    padding: 10px;
+    margin-left: 0;
+}
+
+/* แสดงฟอร์มลงทะเบียนเมื่อ active */
+.content-layout.split-view .register-section {
+    /* กำหนดสัดส่วนให้ฟอร์มใช้พื้นที่ 40% ของความกว้างทั้งหมด */
+    flex: 2; 
+    overflow: auto;
+    opacity: 1;
+    margin-left: 20px;
+}

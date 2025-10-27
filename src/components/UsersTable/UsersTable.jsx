@@ -23,7 +23,7 @@ function UsersTable() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`${process.env.VITE_API_URL}/api/users`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(res.data);
@@ -40,7 +40,7 @@ function UsersTable() {
   const handleDeleteClick = (id) => setModal({ show: true, type: "delete", userId: id });
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`${process.env.VITE_API_URL}/api/users/${modal.userId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/${modal.userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("ลบผู้ใช้เรียบร้อยแล้ว");
@@ -62,7 +62,7 @@ function UsersTable() {
   const handleConfirmEdit = async () => {
     try {
       await axios.put(
-        `${process.env.VITE_API_URL}/api/users/${modal.userId}`,
+        `${import.meta.env.VITE_API_URL}/api/users/${modal.userId}`,
         editData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -16,7 +16,7 @@ function AddMedicine({ isOpen, onClose }) {
   useEffect(() => {
     async function fetchTypes() {
       try {
-        const typesRes = await axios.get(`${process.env.VITE_API_URL}/api/types`);
+        const typesRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/types`);
         setTypes(typesRes.data);
       } catch (error) {
         console.error("Error fetching types:", error);
@@ -30,7 +30,7 @@ function AddMedicine({ isOpen, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.VITE_API_URL}/api/adddata`, form);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/adddata`, form);
       addPopup("success", "เพิ่มข้อมูลยาเรียบร้อยแล้ว ✅");
       setForm({ med_name: "", amount: "", type: "", expire: "" });
       onClose();

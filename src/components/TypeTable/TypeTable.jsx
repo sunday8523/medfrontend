@@ -12,7 +12,7 @@ const TypeTable = () => {
 
   const fetchTypes = async () => {
     try {
-      const res = await axios.get(`${process.env.VITE_API_URL}/api/types`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/types`);
       setTypes(res.data);
     } catch (error) {
       console.error(error);
@@ -27,7 +27,7 @@ const TypeTable = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`${process.env.VITE_API_URL}/api/types/${deleteId}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/types/${deleteId}`);
       toast.success("ลบเรียบร้อย ✅");
       fetchTypes();
     } catch (error) {

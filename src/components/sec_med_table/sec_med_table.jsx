@@ -5,7 +5,7 @@ import './sec_med_table.css';
 import { format } from 'date-fns';
 import { QRCodeCanvas } from 'qrcode.react';
 
-const api = axios.create({ baseURL: `${process.env.VITE_API_URL}/api` });
+const api = axios.create({ baseURL: `${import.meta.env.VITE_API_URL}/api` });
 
 let isRefreshing = false, failedQueue = [];
 const processQueue = (err, token = null) => { failedQueue.forEach(p => err ? p.reject(err) : p.resolve(token)); failedQueue = []; };
@@ -18,7 +18,7 @@ api.interceptors.response.use(res => res, async err => {
     orig._retry = true; isRefreshing = true;
     try {
       const refreshToken = localStorage.getItem('refreshToken'); if(!refreshToken) throw new Error('No refresh token');
-      const { data:{ token } } = await axios.post(`${process.env.VITE_API_URL}/auth/refresh-token`,{refreshToken});
+      const { data:{ token } } = await axios.post(`${import.meta.env.VITE_API_URL}/auth/refresh-token`,{refreshToken});
       localStorage.setItem('token', token);
       processQueue(null, token);
       return api(orig);

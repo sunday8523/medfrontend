@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { QRCodeCanvas } from 'qrcode.react';
 
 const apiClient = axios.create({
-  baseURL: `${process.env.VITE_API_URL}/api`,
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
 });
 
 apiClient.interceptors.request.use((config) => {

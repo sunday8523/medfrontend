@@ -14,7 +14,7 @@ export default function MonthlyWithdrawalsChart() {
 
   // ดึงชื่อยาจาก backend
   useEffect(() => {
-    axios.get(`${process.env.VITE_API_URL}/logs/med-names`)
+    axios.get(`${import.meta.env.VITE_API_URL}/logs/med-names`)
       .then(res => {
         const medsArray = Array.isArray(res.data) ? res.data : [];
         setMedOptions(medsArray.map(name => ({ value: name, label: name })));
@@ -26,7 +26,7 @@ export default function MonthlyWithdrawalsChart() {
   useEffect(() => {
     const med_names = selectedMeds.map(m => m.value).join(',');
 
-    axios.get(`${process.env.VITE_API_URL}/logs/monthly-withdrawals${med_names ? `?med_names=${med_names}` : ''}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/logs/monthly-withdrawals${med_names ? `?med_names=${med_names}` : ''}`)
       .then(res => {
         const data = res.data && typeof res.data === 'object' ? res.data : null;
         setChartData(data);

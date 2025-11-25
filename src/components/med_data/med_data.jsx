@@ -34,6 +34,20 @@ const MedData = () => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-800"></h2>
         <div className="flex gap-4" ref={dropdownRef}>
+         
+         <Button
+            variant="contained"
+            color="success"
+            onClick={() => setOpenVaccinePopup(true)}
+          >
+            ดูวัคซีนทั้งหมด 💉
+          </Button>
+
+          <VaccinePopup
+            open={openVaccinePopup}
+            onClose={() => setOpenVaccinePopup(false)}
+          />
+         
           {/* ปุ่มเพิ่มรายการ */}
           <button
             onClick={() => setIsPopupOpen(true)}

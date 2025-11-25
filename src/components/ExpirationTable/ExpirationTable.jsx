@@ -168,7 +168,7 @@ const ExpirationTable = () => {
         <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#444' }}>
           รายงานยาคงคลังและวันหมดอายุ 💊
         </Typography>
-        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+        {/* <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
           <Button
             variant="contained"
             color="secondary"
@@ -188,7 +188,7 @@ const ExpirationTable = () => {
           >
             {isSendingLowStock ? 'กำลังส่ง...' : 'แจ้งเตือนยาใกล้หมด'}
           </Button>
-        </Box>
+        </Box> */}
       </Box>
 
       {notificationStatus.message &&

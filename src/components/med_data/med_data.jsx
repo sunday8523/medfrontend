@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, PlusCircle, ClipboardList } from "lucide-react";
+import VaccinePopup from '../VaccinePopup.jsx';
 
 const MedData = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);

@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, PlusCircle, ClipboardList } from "lucide-react";
+import { Button } from '@mui/material';
 import VaccinePopup from '../VaccinePopup.jsx';
 
 const MedData = () => {
@@ -15,7 +16,7 @@ const MedData = () => {
   const [isTypeTablePopupOpen, setIsTypeTablePopupOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const [openVaccinePopup, setOpenVaccinePopup] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   // ปิด dropdown ถ้ากดนอก
@@ -35,8 +36,8 @@ const MedData = () => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-800"></h2>
         <div className="flex gap-4" ref={dropdownRef}>
-         
-         <Button
+
+          <Button
             variant="contained"
             color="success"
             onClick={() => setOpenVaccinePopup(true)}
@@ -48,7 +49,6 @@ const MedData = () => {
             open={openVaccinePopup}
             onClose={() => setOpenVaccinePopup(false)}
           />
-         
           {/* ปุ่มเพิ่มรายการ */}
           <button
             onClick={() => setIsPopupOpen(true)}

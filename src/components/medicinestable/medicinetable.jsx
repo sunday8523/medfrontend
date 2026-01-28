@@ -99,7 +99,8 @@ function MedicinesTable() {
             med_name: selectedMed.med_name,
             amount,
             type: selectedMed.type,
-            expire: selectedMed.expire
+            expire: selectedMed.expire,
+            lotno: selectedMed.lotno
           });
 
           const updatedMeds = meds.map(m =>
@@ -167,6 +168,7 @@ function MedicinesTable() {
             <th>ชื่อยา</th>
             <th>จำนวน</th>
             <th>ประเภท</th>
+            <th>Lot No</th>
             <th>วันหมดอายุ</th>
           </tr>
         </thead>
@@ -178,12 +180,13 @@ function MedicinesTable() {
                 <td>{med.med_name}</td>
                 <td>{med.amount}</td>
                 <td>{med.type}</td>
+                <td>{med.lotno}</td>
                 <td>{formatDate(med.expire)}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="5" style={{ textAlign: 'center' }}>
+              <td colSpan="6" style={{ textAlign: 'center' }}>
                 ไม่มีข้อมูล
               </td>
             </tr>
@@ -268,6 +271,14 @@ function MedicinesTable() {
                   placeholder="ประเภท"
                 />
                 <input
+                  type="text"
+                  value={editingData.lotno || ''}
+                  onChange={(e) =>
+                    setEditingData({ ...editingData, lotno: e.target.value })
+                  }
+                  placeholder="Lot No"
+                />
+                <input
                   type="date"
                   value={editingData.expire}
                   onChange={(e) =>
@@ -291,12 +302,13 @@ function MedicinesTable() {
                 <p><strong>ชื่อยา:</strong> {selectedMed.med_name}</p>
                 <p><strong>จำนวน:</strong> {selectedMed.amount}</p>
                 <p><strong>ประเภท:</strong> {selectedMed.type}</p>
+                <p><strong>Lot No:</strong> {selectedMed.lotno}</p>
                 <p><strong>วันหมดอายุ:</strong> {formatDate(selectedMed.expire)}</p>
 
                 <div className="qr-code-container">
                   <QRCodeCanvas
                     id="med-qrcode"
-                    value={`ID: ${selectedMed.med_id}\nชื่อยา: ${selectedMed.med_name}\nจำนวน: ${selectedMed.amount}\nประเภท: ${selectedMed.type}\nวันหมดอายุ: ${formatDate(selectedMed.expire)}`}
+                    value={`ID: ${selectedMed.med_id}\nชื่อยา: ${selectedMed.med_name}\nจำนวน: ${selectedMed.amount}\nประเภท: ${selectedMed.type}\nLot: ${selectedMed.lotno}\nวันหมดอายุ: ${formatDate(selectedMed.expire)}`}
                     size={180}
                     bgColor={"#ffffff"}
                     fgColor={"#000000"}
@@ -319,6 +331,7 @@ function MedicinesTable() {
                         expire: selectedMed.expire
                           ? format(new Date(selectedMed.expire), 'yyyy-MM-dd')
                           : '',
+                        lotno: selectedMed.lotno
                       })
                     }
                   >
@@ -366,12 +379,11 @@ function MedicinesTable() {
                 ยกเลิก
               </button>
               <button
-                className={`card-button ${
-                  confirmModal.type === 'edit' ? 'btn-edit' :
+                className={`card-button ${confirmModal.type === 'edit' ? 'btn-edit' :
                   confirmModal.type === 'withdraw' ? 'btn-withdraw' :
-                  confirmModal.type === 'delete' ? 'btn-delete' :
-                  'primary'
-                }`}
+                    confirmModal.type === 'delete' ? 'btn-delete' :
+                      'primary'
+                  }`}
                 onClick={confirmModal.onConfirm}
               >
                 ยืนยัน

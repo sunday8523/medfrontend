@@ -28,7 +28,7 @@ const ExpirationTable = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const [popupMeds, setPopupMeds] = useState([]);
-  const [popupHeaders, setPopupHeaders] = useState(['ชื่อ', 'จำนวน', 'ประเภท', 'วันหมดอายุ']);
+  const [popupHeaders, setPopupHeaders] = useState(['ชื่อ', 'จำนวน', 'ประเภท', 'Lot No', 'วันหมดอายุ']);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -115,7 +115,7 @@ const ExpirationTable = () => {
 
   // 🔹 แบ่งกลุ่มวันหมดอายุ
   const today = new Date();
-  today.setHours(0,0,0,0);
+  today.setHours(0, 0, 0, 0);
 
   const expired = [];
   const exp7Days = [];
@@ -125,8 +125,8 @@ const ExpirationTable = () => {
 
   meds.forEach(med => {
     const expireDate = new Date(med.expire);
-    expireDate.setHours(0,0,0,0);
-    const diffDays = Math.ceil((expireDate - today)/(1000*60*60*24));
+    expireDate.setHours(0, 0, 0, 0);
+    const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
 
     if (diffDays < 0) expired.push(med);
     else if (diffDays <= 7) exp7Days.push(med);
@@ -135,8 +135,8 @@ const ExpirationTable = () => {
     else if (diffDays <= 180) exp6Months.push(med);  // 6 เดือน
   });
 
-  const expHeaders = ['ชื่อ', 'จำนวน', 'ประเภท', 'วันหมดอายุ'];
-  const lowStockHeaders = ['ชื่อ', 'จำนวนคงเหลือ', 'ประเภท'];
+  const expHeaders = ['ชื่อ', 'จำนวน', 'ประเภท', 'Lot No', 'วันหมดอายุ'];
+  const lowStockHeaders = ['ชื่อ', 'จำนวนคงเหลือ', 'ประเภท', 'Lot No'];
 
   // 🔹 Card Section
   const cardData = [
@@ -249,6 +249,7 @@ const ExpirationTable = () => {
                     <TableCell>{m.med_name}</TableCell>
                     <TableCell>{m.amount}</TableCell>
                     <TableCell>{m.type}</TableCell>
+                    <TableCell>{m.lotno}</TableCell>
                     {popupHeaders.includes('วันหมดอายุ') && <TableCell>{m.expire || '-'}</TableCell>}
                   </TableRow>
                 ))}

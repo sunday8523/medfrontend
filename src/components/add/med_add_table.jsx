@@ -9,6 +9,7 @@ function AddMedicine({ isOpen, onClose }) {
     amount: "",
     type: "",
     expire: "",
+    lotno: "",
   });
   const [types, setTypes] = useState([]);
   const [popups, setPopups] = useState([]);
@@ -32,7 +33,7 @@ function AddMedicine({ isOpen, onClose }) {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/adddata`, form);
       addPopup("success", "เพิ่มข้อมูลยาเรียบร้อยแล้ว");
-      setForm({ med_name: "", amount: "", type: "", expire: "" });
+      setForm({ med_name: "", amount: "", type: "", expire: "", lotno: "" });
       onClose();
     } catch (error) {
       addPopup("error", error.response?.data?.message || "เกิดข้อผิดพลาด");
@@ -138,6 +139,21 @@ function AddMedicine({ isOpen, onClose }) {
                   </select>
                 </div>
 
+                {/* Lot No */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Lot No
+                  </label>
+                  <input
+                    name="lotno"
+                    placeholder="กรอก Lot No"
+                    value={form.lotno}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none transition"
+                  />
+                </div>
+
                 {/* วันหมดอายุ */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -184,11 +200,10 @@ function AddMedicine({ isOpen, onClose }) {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg text-white ${
-                p.type === "success" 
-                  ? "bg-green-500" 
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg text-white ${p.type === "success"
+                  ? "bg-green-500"
                   : "bg-red-500"
-              }`}
+                }`}
             >
               {p.type === "success" ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}
               <p className="text-sm font-medium">{p.message}</p>

@@ -51,7 +51,7 @@ function WithdrawForm({ selectedMed, onCancel }) {
     // Validation real-time
     setErrors(prev => ({
       ...prev,
-      [name]: value.trim() === '' && ['amount','wd_date','recip'].includes(name)
+      [name]: value.trim() === '' && ['amount', 'wd_date', 'recip'].includes(name)
     }));
   };
 
@@ -111,7 +111,7 @@ function WithdrawForm({ selectedMed, onCancel }) {
             <input
               className="withdraw-field"
               type="text"
-              value={`${form.med_id} - ${form.med_name}`}
+              value={`${form.med_id} - ${form.med_name} (Lot: ${selectedMed?.lotno || '-'})`}
               readOnly
               disabled
             />

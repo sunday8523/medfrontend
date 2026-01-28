@@ -61,7 +61,7 @@ function LogTable() {
       await axios.delete(`${import.meta.env.VITE_API_URL}/api/logs/${selectedLog.log_id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
-      
+
       const newLogs = logs.filter(log => log.log_id !== selectedLog.log_id);
       setLogs(newLogs);
 
@@ -122,6 +122,7 @@ function LogTable() {
             <tr>
               <th>ID ยา</th>
               <th>ชื่อยา</th>
+              <th>Lot No</th>
               <th>จำนวน</th>
               <th>วันที่ดำเนินการ</th>
               <th>การกระทำ</th>
@@ -136,6 +137,7 @@ function LogTable() {
               <tr key={log.log_id}>
                 <td>{log.med_id}</td>
                 <td>{log.med_name}</td>
+                <td>{log.lotno}</td>
                 <td>{log.amount}</td>
                 <td>{format(new Date(log.wd_date), 'dd/MM/yyyy')}</td>
                 <td>{log.action}</td>
@@ -143,8 +145,8 @@ function LogTable() {
                 <td>{log.recip}</td>
                 <td>{log.note}</td>
                 <td>
-                  <button 
-                    onClick={() => handleDeleteClick(log)} 
+                  <button
+                    onClick={() => handleDeleteClick(log)}
                     className="delete-button"
                   >
                     ลบ

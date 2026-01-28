@@ -1,12 +1,25 @@
-// src/components/ExpirationTable.jsx
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import {
-  Box, Typography, Button, CircularProgress, Alert,
-  Card, CardContent, Modal, Divider, IconButton,
-  Table, TableHead, TableRow, TableCell, TableBody
-} from '@mui/material';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+// Responsive check
+const theme = import('@mui/material/styles').then(m => m.useTheme ? m.useTheme() : null); // Dynamic import workaround or just use standard import if possible.
+// Actually, standard import is better. Let's add imports first.
+
+// Wait, I can't add imports with this tool unless I replace the top of the file.
+// I will do two edits. First add imports, then change the render logic.
+
+return (
+  <Box sx={{ p: 3, background: '#FAFAFA', borderRadius: 2 }}>
+    {/* ... (Header code remains) ... */}
+
+    {/* ... (Grid Cards code remains) ... */}
+
+    {/* Modal */}
+    {/* I should target the Modal content specifically */}
+  </Box>
+);
+
+// I will try to replace the Modal content block primarily.
+// But first I need to ensure imports are there.
+// Let me replace the imports first.
+
 import CloseIcon from '@mui/icons-material/Close';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
@@ -234,31 +247,76 @@ const ExpirationTable = () => {
             <IconButton onClick={handleClosePopup}><CloseIcon /></IconButton>
           </Box>
           <Divider sx={{ mb: 2, mt: 1 }} />
+
           {popupMeds.length === 0 ? (
             <Typography sx={{ textAlign: 'center', py: 3, color: 'gray' }}>ไม่มีรายการ</Typography>
           ) : (
-            <Table sx={{ minWidth: 650 }}>
-              <TableHead sx={{ bgcolor: '#f4f6f8' }}>
-                <TableRow>
-                  {popupHeaders.map(header => <TableCell key={header} sx={{ fontWeight: 'bold' }}>{header}</TableCell>)}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {popupMeds.map((m, i) => (
-                  <TableRow key={i} sx={{ '&:nth-of-type(odd)': { bgcolor: '#f9f9f9' }, '&:hover': { bgcolor: '#f0f0f0' } }}>
-                    <TableCell>{m.med_name}</TableCell>
-                    <TableCell>{m.amount}</TableCell>
-                    <TableCell>{m.type}</TableCell>
-                    <TableCell>{m.lotno}</TableCell>
-                    {popupHeaders.includes('วันหมดอายุ') && <TableCell>{m.expire || '-'}</TableCell>}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            // Conditional Rendering
+            <ResponsivePopupContent
+              meds={popupMeds}
+              headers={popupHeaders}
+            />
           )}
         </Box>
       </Modal>
     </Box>
+  );
+};
+
+// Sub-component to handle responsive logic cleanly
+const ResponsivePopupContent = ({ meds, headers }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  if (isMobile) {
+    return (
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {meds.map((m, i) => (
+          <Card key={i} variant="outlined" sx={{ borderRadius: 2 }}>
+            <CardContent sx={{ '&:last-child': { pb: 2 } }}>
+              {headers.map((header, idx) => {
+                let value = '';
+                // Map header to value
+                if (header === 'ชื่อ') value = m.med_name;
+                else if (header === 'จำนวน') value = m.amount;
+                else if (header === 'ประเภท') value = m.type;
+                else if (header === 'Lot No') value = m.lotno;
+                else if (header === 'วันหมดอายุ') value = m.expire || '-';
+                else if (header === 'จำนวนคงเหลือ') value = m.amount; // For low stock
+
+                return (
+                  <Box key={header} sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#666' }}>{header}:</Typography>
+                    <Typography variant="body2">{value}</Typography>
+                  </Box>
+                );
+              })}
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+    );
+  }
+
+  return (
+    <Table sx={{ minWidth: 650 }}>
+      <TableHead sx={{ bgcolor: '#f4f6f8' }}>
+        <TableRow>
+          {headers.map(header => <TableCell key={header} sx={{ fontWeight: 'bold' }}>{header}</TableCell>)}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {meds.map((m, i) => (
+          <TableRow key={i} sx={{ '&:nth-of-type(odd)': { bgcolor: '#f9f9f9' }, '&:hover': { bgcolor: '#f0f0f0' } }}>
+            <TableCell>{m.med_name}</TableCell>
+            <TableCell>{m.amount}</TableCell>
+            <TableCell>{m.type}</TableCell>
+            <TableCell>{m.lotno}</TableCell>
+            {headers.includes('วันหมดอายุ') && <TableCell>{m.expire || '-'}</TableCell>}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 

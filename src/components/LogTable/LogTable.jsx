@@ -135,16 +135,16 @@ function LogTable() {
           <tbody>
             {currentLogs.map(log => ( // map จาก currentLogs ที่แบ่งหน้าแล้ว
               <tr key={log.log_id}>
-                <td>{log.med_id}</td>
-                <td>{log.med_name}</td>
-                <td>{log.lotno}</td>
-                <td>{log.amount}</td>
-                <td>{format(new Date(log.wd_date), 'dd/MM/yyyy')}</td>
-                <td>{log.action}</td>
-                <td>{log.name}</td>
-                <td>{log.recip}</td>
-                <td>{log.note}</td>
-                <td>
+                <td data-label="ID ยา">{log.med_id}</td>
+                <td data-label="ชื่อยา">{log.med_name}</td>
+                <td data-label="Lot No">{log.lotno}</td>
+                <td data-label="จำนวน">{log.amount}</td>
+                <td data-label="วันที่ดำเนินการ">{format(new Date(log.wd_date), 'dd/MM/yyyy')}</td>
+                <td data-label="การกระทำ">{log.action}</td>
+                <td data-label="ผู้ดำเนินการ">{log.name}</td>
+                <td data-label="ผู้รับยา">{log.recip}</td>
+                <td data-label="หมายเหตุ">{log.note}</td>
+                <td data-label="การจัดการ">
                   <button
                     onClick={() => handleDeleteClick(log)}
                     className="delete-button"

@@ -17,7 +17,7 @@
 
 .sidebar:hover {
   width: 220px;
-  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Menu */
@@ -78,18 +78,41 @@
 
 .logout {
   padding: 1rem;
-  border-top: 1px solid rgba(255,255,255,0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive */
+/* Responsive */
 @media screen and (max-width: 768px) {
   .sidebar {
-    width: 60px;
+    width: 260px;
+    /* Full width for better mobile experience */
+    transform: translateX(-100%);
+    /* Hide by default */
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
   }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+    /* Slide in */
+  }
+
+  /* Reset hover behavior on mobile */
   .sidebar:hover {
-    width: 180px;
+    width: 260px;
   }
+
   .sidebar-text {
-    font-size: 0.9rem;
+    display: inline;
+    opacity: 1;
+    transform: translateX(0);
+    font-size: 1rem;
+  }
+
+  /* Adjust menu padding for mobile */
+  .menu li {
+    padding: 1rem;
+    margin: 0.5rem;
   }
 }

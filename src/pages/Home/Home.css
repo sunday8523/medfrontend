@@ -3,6 +3,8 @@
   display: flex;
   height: 100vh;
   width: 100%;
+  position: relative;
+  overflow: hidden; /* Fix scrollbar issues */
 }
 
 .main-content {
@@ -10,12 +12,16 @@
   background: #ebe9e9;
   padding: 1rem;
   margin-left: 80px; /* ขนาด sidebar collapsed */
-  transition: margin-left 0.4s ease;
+  transition: all 0.4s ease;
+  overflow-y: auto; /* Scroll inside main content */
+  height: 100vh;
 }
 
-/* เมื่อ hover sidebar */
-.sidebar:hover ~ .main-content {
-  margin-left: 220px;
+/* เมื่อ hover sidebar ในจอใหญ่ */
+@media screen and (min-width: 769px) {
+  .sidebar:hover ~ .main-content {
+    margin-left: 220px;
+  }
 }
 
 /* Card container */
@@ -24,15 +30,33 @@
   padding: 2rem;
   border-radius: 10px;
   min-height: 80vh;
+  transition: all 0.3s ease;
 }
 
 /* Header wrapper */
 .header--wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between; /* Change to space-between for hamburger */
   align-items: center;
   margin-bottom: 1.5rem;
   position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+  display: none; /* Hide on Desktop */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-right: 1rem;
 }
 
 /* User Info */
@@ -47,6 +71,7 @@
   cursor: pointer;
   transition: all 0.25s ease;
   position: relative;
+  margin-left: auto; /* Push to right */
 }
 
 .user-info:hover {
@@ -104,5 +129,38 @@
 
 .dropdown-icon {
   font-size: 1.05rem;
+}
+
+/* Sidebar Overlay for Mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+/* --- Responsive Media Queries --- */
+@media screen and (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 0.8rem;
+    width: 100%;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  .card--container {
+    padding: 1rem; /* Reduce padding on mobile */
+  }
+
+  .sidebar-overlay {
+    display: block; /* Show overlay when active */
+  }
 }
 

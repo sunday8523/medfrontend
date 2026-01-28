@@ -20,6 +20,7 @@ const Home = () => {
   const [showAddMed, setShowAddMed] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false); // State for mobile sidebar
 
   const userInfoRef = useRef(null);
 
@@ -33,6 +34,17 @@ const Home = () => {
     setDropdownOpen(false);
     setModalOpen(true);
   };
+
+  const toggleMobileSidebar = () => {
+    setIsMobileSidebarOpen(!isMobileSidebarOpen);
+  };
+
+  const handleMenuClick = (menu) => {
+    if (menu === 'sec-med') setShowAddMed(true);
+    else setShowAddMed(false);
+    setShowContent(menu);
+    setIsMobileSidebarOpen(false); // Close sidebar on mobile after click
+  }
 
   // ปิด dropdown เมื่อคลิกนอก
   useEffect(() => {
@@ -49,18 +61,26 @@ const Home = () => {
 
   return (
     <div className="app-container">
+      {/* Overlay for mobile when sidebar is open */}
+      {isMobileSidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setIsMobileSidebarOpen(false)}></div>
+      )}
+
       <Sidebar
         activeMenu={showContent}
-        onMenuClick={menu => {
-          if (menu === 'sec-med') setShowAddMed(true);
-          else setShowAddMed(false);
-          setShowContent(menu);
-        }}
+        onMenuClick={handleMenuClick}
         onLogout={handleLogout}
+        isMobileOpen={isMobileSidebarOpen} // Pass mobile state
       />
 
       <main className="main-content">
         <div className="header--wrapper">
+          <div className="header-left">
+            <button className="hamburger-btn" onClick={toggleMobileSidebar}>
+              <i className="fas fa-bars"></i>
+            </button>
+          </div>
+
           {user && (
             <div
               className="user-info"

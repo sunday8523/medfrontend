@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Seiha from "../../assets/GotQ3aSXMAAangF.jpg"; 
+import Seiha from "../../assets/GotQ3aSXMAAangF.jpg";
 import pic from "../../assets/bg452524.png";
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            navigate('/home'); 
+            navigate('/home');
         }
     }, [navigate]);
 
@@ -22,7 +22,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         // --- LOG 01 ---
-        console.log("--- handleSubmit_01: ฟังก์ชันเริ่มทำงาน ---"); 
+        console.log("--- handleSubmit_01: ฟังก์ชันเริ่มทำงาน ---");
         e.preventDefault();
 
         if (!values.email || !values.password) {
@@ -37,7 +37,7 @@ const Login = () => {
 
         try {
             const apiUrl = import.meta.env.VITE_API_URL;
-            
+
             // --- LOG 04 ---
             console.log("--- handleSubmit_04: กำลังเรียก API ไปที่:", `${apiUrl}/auth/login`);
 
@@ -55,7 +55,7 @@ const Login = () => {
         } catch (err) {
             // --- LOG 06 ---
             console.log("--- handleSubmit_06: ล้มเหลว (เข้า CATCH) ---");
-            
+
             // Log error แบบละเอียด
             if (err.response) {
                 // เซิร์ฟเวอร์ตอบกลับมา (เช่น 404, 401, 500)
@@ -68,7 +68,7 @@ const Login = () => {
                 // Error อื่นๆ (เช่น ตั้งค่า axios ผิด)
                 console.error("Error Message (ปัญหาตอนตั้งค่า):", err.message);
             }
-            
+
             const message = err.response?.data?.message || 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่ภายหลัง';
             setErrorMessage(message);
         }
@@ -79,7 +79,7 @@ const Login = () => {
             className="min-h-screen flex items-center justify-center bg-cover bg-center"
             style={{ backgroundImage: `url(${pic})` }}
         >
-            <div className="px-8 py-6 rounded-2xl bg-transparent backdrop-blur-lg border border-white/20 shadow-xl w-80">
+            <div className="px-8 py-6 rounded-2xl bg-transparent backdrop-blur-lg border border-white/20 shadow-xl w-full max-w-sm mx-4">
                 <h1 className="text-center font-bold text-3xl text-black">Login</h1>
                 <form className="my-6" onSubmit={handleSubmit}>
                     <input

@@ -2,8 +2,8 @@
 import React from 'react';
 import './sidebar.css';
 
-const Sidebar = ({ onMenuClick, onLogout, activeMenu }) => (
-  <div className="sidebar">
+const Sidebar = ({ onMenuClick, onLogout, activeMenu, isMobileOpen }) => (
+  <div className={`sidebar ${isMobileOpen ? 'mobile-open' : ''}`}>
     <ul className="menu">
       {[
         { key: 'dashboard', icon: 'fa-solid fa-chart-simple', text: 'Dashboard' },

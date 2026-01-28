@@ -1,13 +1,16 @@
 :root {
-  --primary-color: #7B5FFF; /* สีม่วงสด */
-  --secondary-color: #EDE7FF; /* สีม่วงอ่อน background */
-  --bg-color: #F9F9FB; /* พื้นหลังหลัก */
+  --primary-color: #7B5FFF;
+  /* สีม่วงสด */
+  --secondary-color: #EDE7FF;
+  /* สีม่วงอ่อน background */
+  --bg-color: #F9F9FB;
+  /* พื้นหลังหลัก */
   --text-color: #333;
   --text-color-light: #666;
   --row-hover-gradient: linear-gradient(90deg, #f3f3f3 0%, #e6e0ff 100%);
   --button-bg: #FF5F5F;
   --button-hover-bg: #FF3B3B;
-  --header-shadow: rgba(0,0,0,0.1);
+  --header-shadow: rgba(0, 0, 0, 0.1);
 }
 
 /* Container */
@@ -18,7 +21,7 @@
   color: var(--text-color);
   background-color: var(--bg-color);
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease-in-out;
 }
 
@@ -34,7 +37,8 @@
 /* Responsive wrapper */
 .table-responsive {
   overflow-x: auto;
-  max-height: 500px; /* กำหนดสูงสุด */
+  max-height: 500px;
+  /* กำหนดสูงสุด */
   position: relative;
   border-radius: 12px;
 }
@@ -43,10 +47,12 @@
 .table-responsive::-webkit-scrollbar {
   height: 8px;
 }
+
 .table-responsive::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 4px;
 }
+
 .table-responsive::-webkit-scrollbar-track {
   background: #f0f0f0;
 }
@@ -79,14 +85,14 @@
   padding: 0.9rem 1.2rem;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .log-table tbody tr:hover td {
   background: var(--row-hover-gradient);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 /* Delete button */
@@ -122,9 +128,66 @@
     padding: 1rem;
   }
 
-  .log-table th,
+  /* Hide Table Header */
+  .log-table thead {
+    display: none;
+  }
+
+  /* Block layout for table elements */
+  .log-table,
+  .log-table tbody,
+  .log-table tr,
   .log-table td {
-    padding: 0.6rem 0.8rem;
+    display: block;
+    width: 100%;
+  }
+
+  /* Card Style for Rows */
+  .log-table tr {
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    border: 1px solid #f0f0f0;
+  }
+
+  /* Flex layout for Cells */
+  .log-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    box-shadow: none !important;
+    /* Reset component shadow */
+    border-radius: 0;
+    font-size: 0.95rem;
+  }
+
+  .log-table td:last-child {
+    border-bottom: none;
+    justify-content: center;
+    /* Center action button */
+  }
+
+  /* Label for Cells */
+  .log-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--primary-color);
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    margin-right: 15px;
+    text-align: left;
+  }
+
+  /* Adjust hover effects for mobile */
+  .log-table tbody tr:hover td {
+    transform: none;
+    background: #fff;
+    box-shadow: none;
   }
 }
 
@@ -133,8 +196,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem; /* ระยะห่างระหว่างปุ่ม */
-  margin-top: 1.5rem; /* ระยะห่างจากตาราง */
+  gap: 1rem;
+  /* ระยะห่างระหว่างปุ่ม */
+  margin-top: 1.5rem;
+  /* ระยะห่างจากตาราง */
 }
 
 .pagination-controls button {
@@ -161,7 +226,9 @@
 .pagination-controls span {
   font-size: 0.9rem;
   color: #555;
-  min-width: 80px; /* กำหนดความกว้างขั้นต่ำให้ text ไม่กระโดด */
+  min-width: 80px;
+  /* กำหนดความกว้างขั้นต่ำให้ text ไม่กระโดด */
   text-align: center;
 }
+
 /* --- END ADDED --- */

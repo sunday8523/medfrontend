@@ -176,12 +176,12 @@ function MedicinesTable() {
           {paginatedMeds.length ? (
             paginatedMeds.map((med) => (
               <tr key={med.med_id} onClick={() => setSelectedMed(med)}>
-                <td>{med.med_id}</td>
-                <td>{med.med_name}</td>
-                <td>{med.amount}</td>
-                <td>{med.type}</td>
-                <td>{med.lotno}</td>
-                <td>{formatDate(med.expire)}</td>
+                <td data-label="ไอดี">{med.med_id}</td>
+                <td data-label="ชื่อยา">{med.med_name}</td>
+                <td data-label="จำนวน">{med.amount}</td>
+                <td data-label="ประเภท">{med.type}</td>
+                <td data-label="Lot No">{med.lotno}</td>
+                <td data-label="วันหมดอายุ">{formatDate(med.expire)}</td>
               </tr>
             ))
           ) : (

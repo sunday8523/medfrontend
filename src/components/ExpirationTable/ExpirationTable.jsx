@@ -1,25 +1,13 @@
-// Responsive check
-const theme = import('@mui/material/styles').then(m => m.useTheme ? m.useTheme() : null); // Dynamic import workaround or just use standard import if possible.
-// Actually, standard import is better. Let's add imports first.
-
-// Wait, I can't add imports with this tool unless I replace the top of the file.
-// I will do two edits. First add imports, then change the render logic.
-
-return (
-  <Box sx={{ p: 3, background: '#FAFAFA', borderRadius: 2 }}>
-    {/* ... (Header code remains) ... */}
-
-    {/* ... (Grid Cards code remains) ... */}
-
-    {/* Modal */}
-    {/* I should target the Modal content specifically */}
-  </Box>
-);
-
-// I will try to replace the Modal content block primarily.
-// But first I need to ensure imports are there.
-// Let me replace the imports first.
-
+// src/components/ExpirationTable.jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import {
+  Box, Typography, Button, CircularProgress, Alert,
+  Card, CardContent, Modal, Divider, IconButton,
+  Table, TableHead, TableRow, TableCell, TableBody,
+  useMediaQuery, useTheme
+} from '@mui/material';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import CloseIcon from '@mui/icons-material/Close';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
